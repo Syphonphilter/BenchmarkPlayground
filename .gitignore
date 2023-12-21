@@ -1,0 +1,4 @@
+bin/
+obj/
+CSharpBenchmarks/BenchmarkPlayground/bin/Release
+CSharpBenchmarks/BenchmarkPlayground/obj/
