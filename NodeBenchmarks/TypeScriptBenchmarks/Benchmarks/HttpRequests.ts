@@ -8,12 +8,7 @@ async function simulateHTTPRequests(endpoint: string, numberOfRequests: number):
     // Simulate making HTTP requests concurrently
     const promises = Array.from({ length: numberOfRequests }, async () => {
         try {
-            const response: AxiosResponse = await axios.get(endpoint);
-            const endTime = Date.now();
-            const elapsedTime = endTime - startTime;
-        
-            //console.log('Response:', response.data);
-            //console.log(`Time taken to get response: ${elapsedTime}ms`);
+            await axios.get(endpoint);
             completedRequests++;
           } catch (error) {
             console.error('Error fetching data:', error);
@@ -25,7 +20,7 @@ async function simulateHTTPRequests(endpoint: string, numberOfRequests: number):
 
     const endTime = Date.now();
     const elapsedTimeInSeconds = (endTime - startTime) / 1000;
-    const requestsPerSecond = completedRequests / elapsedTimeInSeconds;
+    const requestsPerSecond = completedRequests+failedRequests / elapsedTimeInSeconds;
     
     return `ok ${completedRequests}, bad ${failedRequests} for ${numberOfRequests} at ${requestsPerSecond} r/s` ;
 }
